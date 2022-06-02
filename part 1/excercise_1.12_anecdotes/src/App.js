@@ -17,14 +17,29 @@ const AnecdoteStatistic = ({votes, index}) => {
   )
 }
 const DailyAnecdote = (props) => {
-
+  return (
+    <div>
+    <h2>Quote of the day:</h2>
+    <Anecdote anecdote={props.anecdotes[props.selected]} />
+    <AnecdoteStatistic votes={props.votes} index={props.selected} />
+    <Button text="Vote" onClick={props.updateVotes} />
+    <Button text="Get new quote" onClick={props.selectAnecdote} />
+    </div>
+  )
 }
 
 const MostPopularAnecdote = ({votes,anecdotes}) => {
+  const values=Object.values(votes)
+  const mostVoted=Math.max(...votes)
+  const index=values.indexOf(mostVoted)
   
 
+
   return (
-    <h1></h1>
+    <div>
+      <h2>Most popular anecdote:</h2>
+      <Anecdote anecdote={anecdotes[index]} />
+    </div>
   )
 }
 const App = () => {
@@ -38,7 +53,6 @@ const App = () => {
       'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
     
-  const [selected, setSelected] = useState(0)
   const [votes,setVotes] = useState(Array(anecdotes.length).fill(0))
   const selectAnecdote = () => {
     const length=anecdotes.length
@@ -46,24 +60,17 @@ const App = () => {
     console.log("Rolled anecdote ",randomInt)
     setSelected(randomInt)
   }
-
+  const [selected, setSelected] = useState(0)
   const updateVotes = () => {
 
-    let tempVotes={ ...votes }
+    let tempVotes=[ ...votes ]
     tempVotes[selected] += 1
     setVotes(tempVotes)
   }
 
   return (
     <div>
-      <h2>Quote of the day:</h2>
-      <Anecdote anecdote={anecdotes[selected]} />
-      <AnecdoteStatistic votes={votes} index={selected} />
-      <DailyAnecdote anecdotes={anecdotes} />
-      <br />
-      <Button text="Vote" onClick={updateVotes} />
-      <Button text="Get new quote" onClick={selectAnecdote} />
-      <br />
+      <DailyAnecdote anecdotes={anecdotes} votes={votes} selected={selected} updateVotes={updateVotes} selectAnecdote={selectAnecdote}/>
       <MostPopularAnecdote votes={votes} anecdotes={anecdotes} />
     </div>
   )
