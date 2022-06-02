@@ -32,9 +32,6 @@ const MostPopularAnecdote = ({votes,anecdotes}) => {
   const values=Object.values(votes)
   const mostVoted=Math.max(...votes)
   const index=values.indexOf(mostVoted)
-  
-
-
   return (
     <div>
       <h2>Most popular anecdote:</h2>
