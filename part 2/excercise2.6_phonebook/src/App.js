@@ -1,3 +1,10 @@
+/*
+Excercises 2.6-2.10
+*/
+
+import DebugInfo from './components/DebugInfo'
+import PhoneBook from './components/Phonebook'
+
 import { useState } from 'react'
 
 const App = () => {
@@ -34,7 +41,9 @@ const handleChangeNumber=(event)=> {
   setNewNumber(event.target.value)
 }
 const setSearchFilter =(event)=> {
-setListFilter(event.target.value)
+  //console.log(event.target.value)
+  setListFilter(event.target.value)
+  //console.log(listFilter)
 }
 
 const getFilter = (persons,filter) => {
@@ -47,30 +56,10 @@ const getFilter = (persons,filter) => {
 
 
 const persons_filtered = getFilter(persons,listFilter)
-//const persons_filtered = persons
   return (
     <div>
-      <div>debug name: {newName}</div>
-      <div>debug number: {newNumber}</div>
-      <div>debug filter: {listFilter}</div>
-      <h2>Phonebook</h2>
-      <form>
-        <div>
-          name: <input onChange={handleChangeName}/>
-          number: <input onChange={handleChangeNumber}/>
-        </div>
-        <div>
-          <button onClick={addEntry} type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      <div>
-        <input onChange={setSearchFilter} />
-        <ul>
-          {persons_filtered.map(person => <li key={person.name}>Nimi: {person.name} Numero: {person.number}</li>)}
-        </ul>
-      </div>
-      
+      <DebugInfo fields={[newName,newNumber,listFilter]} />
+      <PhoneBook addEntry={addEntry} handleChangeNumber={handleChangeNumber} handleChangeName={handleChangeName} person={persons} filterFunction={setSearchFilter} persons={persons_filtered} />
     </div>
   )
 }
