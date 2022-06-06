@@ -6,6 +6,8 @@ const Button = ({onClick,text}) => {
     </button>
   )
 }
+
+
 const Anecdote = ({anecdote}) => {
   return (
     <p><i>{anecdote}</i></p>
@@ -27,6 +29,7 @@ const DailyAnecdote = (props) => {
     </div>
   )
 }
+
 
 const MostPopularAnecdote = ({votes,anecdotes}) => {
   const values=Object.values(votes)
