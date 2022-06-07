@@ -1,19 +1,31 @@
 /*
-Excercises 2.6-2.10
+Exercises 2.6-2.10 + 2.11
 */
 
 import DebugInfo from './components/DebugInfo'
 import PhoneBook from './components/Phonebook'
 
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
+import axios from 'axios'
+
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
-  ]) 
+  const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [listFilter, setListFilter] = useState('')
+  const hook = () => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(response.data)
+      })
+  }
+  useEffect(hook, [])
+  console.log('render', persons.length, 'notes')
+
   
 const addEntry=(event) => {
   event.preventDefault()
