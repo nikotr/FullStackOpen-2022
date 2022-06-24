@@ -6,13 +6,13 @@ const PhonebookList = (props) => {
     //props.persons.map(person => console.log(person.name))
     return (
 <div>
-    <p>
+    <div>
         <ul>
          { props.persons.map(person => 
-         <PhonebookEntry key={person.name} name={person.name} number={person.number} />
+         <PhonebookEntry key={person.name} name={person.name} number={person.number} removeEntry={props.removeEntry} id={person.id}/>
          )}
          </ul>
-    </p>
+    </div>
 </div>
     )
 }

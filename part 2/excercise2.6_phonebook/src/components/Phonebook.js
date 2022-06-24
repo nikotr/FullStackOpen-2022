@@ -14,9 +14,9 @@ const PhoneBook = (props) => {
            <p>Filter:
            <PhoneBookEntryFilter filterFunction={props.filterFunction} />
            </p>
-           <p>
-           <PhoneBookList persons={props.persons}/>
-           </p>
+           <div>
+           <PhoneBookList persons={props.persons} removeEntry={props.removeEntry} />
+           </div>
        </div>
     )
 }

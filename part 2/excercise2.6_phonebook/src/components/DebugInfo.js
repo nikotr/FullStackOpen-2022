@@ -1,11 +1,9 @@
 const DebugInfo = (props) => {
 console.log(props.fields)
-
+let index=0
     return (
         <div>
-            <p>
-        {props.fields.map(field => <>Debug {field}<br /></>)}
-        </p>
+        {props.fields.map(field => <div key={"debug"+index++}>Debug {field}<br /></div>)}
         </div>
     )
 }
